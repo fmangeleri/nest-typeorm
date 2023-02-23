@@ -7,7 +7,6 @@ export class AppService {
     private configService: ConfigService,
   ) {}
   getHello(): string {
-    // console.log(this.tasks);
-    return `Hello World! ${this.configService.get('API_KEY')}`;
+    return `Hello World! ${this.configService.get('DATABASE_NAME')}`;
   }
 }
