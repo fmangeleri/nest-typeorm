@@ -9,19 +9,21 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
-  Res,
   // ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 import { ParseIntPipe } from '../../../common/parse-int.pipe';
 import { CreateProductDto, UpdateProductDto } from '../../dtos/products.dtos';
 
 import { ProductsService } from '../../services/products/products.service';
 
+@ApiTags('Products')
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {}
 
+  @ApiOperation({ summary: 'Lista de productos' })
   @Get()
   getProducts(
     @Query('limit') limit = 100,

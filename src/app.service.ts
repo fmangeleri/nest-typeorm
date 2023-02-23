@@ -1,12 +1,13 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config/dist';
+import { ConfigType } from '@nestjs/config/dist';
+import config from './config';
 @Injectable()
 export class AppService {
   constructor(
     @Inject('Tasks') private tasks: any[],
-    private configService: ConfigService,
+    @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
   getHello(): string {
-    return `Hello World! ${this.configService.get('DATABASE_NAME')}`;
+    return `Hello World! ${this.configService.database.name}`;
   }
 }
